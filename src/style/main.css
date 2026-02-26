@@ -155,3 +155,42 @@ h1,h2,h3 { font-family:'Cormorant Garamond',serif; }
 .page-subtitle { font-size:14px; color:var(--earth-mid); }
 .page-body { }
 .card { background:white; border-radius:var(--radius); box-shadow:var(--shadow); padding:24px; }
+
+/* recommendation cards (admin) */
+.rec-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:20px;
+}
+.rec-card {
+  background:white;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  padding:20px;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.rec-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+.rec-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; }
+.category-badge { background:var(--saffron-pale); color:var(--saffron); font-size:12px; font-weight:600; padding:4px 10px; border-radius:12px; }
+.rec-title { font-size:16px; font-weight:700; margin-top:4px; }
+.rec-desc { font-size:14px; color:var(--earth-mid); margin-bottom:8px; flex:1; }
+.rec-cost { font-size:13px; color:var(--earth); margin-bottom:10px; }
+.rec-tags { display:flex; flex-wrap:wrap; gap:4px; }
+.tag { background:var(--earth-mid); color:white; font-size:11px; padding:2px 6px; border-radius:6px; }
+
+/* utility components used throughout admin area */
+.search-input { padding:8px 12px; border:1.5px solid #DDD5CA; border-radius:var(--radius-sm); font-size:14px; width:100%; max-width:320px; margin-bottom:16px; }
+
+/* status badges */
+.status-badge { display:inline-block; padding:4px 10px; border-radius:8px; font-size:12px; font-weight:600; }
+.status-pending { background:#FDE68A; color:#92400E; }
+.status-reviewed { background:#D1FAE5; color:#065F46; }
+
+/* table wrapper for admin properties */
+.table-wrapper { overflow-x:auto; }
+.table-wrapper table { width:100%; border-collapse:collapse; font-size:14px; }
+.table-wrapper th, .table-wrapper td { padding:12px 16px; text-align:left; border-bottom:1px solid #E3E2E0; }
+.table-wrapper th { background:var(--cream); font-weight:600; }
+.table-wrapper tr:hover { background:#F7F5F3; }

@@ -145,13 +145,20 @@ function AdminRecommendations({ recommendations, setRecommendations }) {
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({ title:"", category:"", roi:"", cost:"", description:"" });
   const [saved, setSaved] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [editingItem, setEditingItem] = useState(null);
 
   const handleAdd = () => {
     const finalTitle = form.title === "__custom__" ? (form._customTitle || "") : form.title;
     if (!finalTitle || !form.category) return;
-    setRecommendations([...recommendations, { id:Date.now(), ...form, title:finalTitle, tags:[form.category] }]);
+    if (editingItem) {
+      setRecommendations(recommendations.map(x => x.id === editingItem.id ? { ...x, ...form, title: finalTitle, tags:[form.category] } : x));
+    } else {
+      setRecommendations([...recommendations, { id:Date.now(), ...form, title:finalTitle, tags:[form.category] }]);
+    }
     setForm({ title:"", category:"", roi:"", cost:"", description:"" });
     setShowForm(false); setSaved(true); setTimeout(() => setSaved(false), 3000);
+    setEditingItem(null);
   };
 
   return (
@@ -160,10 +167,21 @@ function AdminRecommendations({ recommendations, setRecommendations }) {
         <div><h1 className="page-title">Recommendations</h1><p className="page-subtitle">Manage improvement ideas for homeowners</p></div>
         <button className="btn-sm btn-orange" style={{ fontSize:14, padding:"10px 20px" }} onClick={() => setShowForm(true)}>+ Add New</button>
       </div>
+      <div style={{ marginBottom:16 }}>
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search recommendations..."
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+        />
+      </div>
       <div className="page-body">
         {saved && <div className="success-banner"><CheckIcon/> Recommendation added!</div>}
-        <div className="rec-grid">
-          {recommendations.map(r => (
+          <div className="rec-grid">
+            {recommendations
+              .filter(r => r.title.toLowerCase().includes(searchTerm.toLowerCase()) || r.category.toLowerCase().includes(searchTerm.toLowerCase()))
+              .map(r => (
             <div key={r.id} className="rec-card">
               <div className="rec-header">
                 <div><span className="category-badge">{r.category}</span><div className="rec-title">{r.title}</div></div>
@@ -172,8 +190,11 @@ function AdminRecommendations({ recommendations, setRecommendations }) {
               <div className="rec-desc">{r.description}</div>
               <div className="rec-cost">Cost: {r.cost}</div>
               <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-                <div className="rec-tags">{r.tags?.map(t => <span key={t} className="tag">{t}</span>)}</div>
-                <button className="btn-sm" style={{ background:"#FEE2E2", color:"#B91C1C", fontSize:12 }} onClick={() => setRecommendations(recommendations.filter(x => x.id!==r.id))}>Delete</button>
+                  <div className="rec-tags">{r.tags?.map(t => <span key={t} className="tag">{t}</span>)}</div>
+                  <div style={{ display:'flex', gap:6 }}>
+                    <button className="btn-sm" style={{ background:"#F3F4F6", color:"#374151", fontSize:12 }} onClick={() => { setEditingItem(r); setForm({ title:r.title, category:r.category, roi:r.roi, cost:r.cost, description:r.description }); setShowForm(true); }}>Edit</button>
+                    <button className="btn-sm" style={{ background:"#FEE2E2", color:"#B91C1C", fontSize:12 }} onClick={() => setRecommendations(recommendations.filter(x => x.id!==r.id))}>Delete</button>
+                  </div>
               </div>
             </div>
           ))}
@@ -248,6 +269,8 @@ function AdminProperties({ properties, setProperties }) {
   const [selected, setSelected] = useState(null);
   const [note, setNote] = useState("");
   const [saved, setSaved] = useState(false);
+  const [propSearch, setPropSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
 
   const handleReview = () => {
     setProperties(properties.map(p => p.id===selected.id ? {...p, status:"reviewed", adminNote:note} : p));
@@ -259,13 +282,30 @@ function AdminProperties({ properties, setProperties }) {
       <div className="page-header"><div><h1 className="page-title">Review Properties</h1><p className="page-subtitle">Evaluate submissions and provide expert feedback</p></div></div>
       <div className="page-body">
         {saved && <div className="success-banner"><CheckIcon/> Review submitted!</div>}
+        <div style={{ display:'flex', gap:12, flexWrap:'wrap', marginBottom:12 }}>
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search homeowner..."
+            value={propSearch}
+            onChange={e => setPropSearch(e.target.value)}
+          />
+          <select className="search-input" style={{ maxWidth:120 }} value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
+            <option value="">All status</option>
+            <option value="pending">Pending</option>
+            <option value="reviewed">Reviewed</option>
+          </select>
+        </div>
         <div className="card">
           <div className="table-wrapper">
             <table>
               <thead><tr><th>Photo</th><th>Homeowner</th><th>Property</th><th>Location</th><th>Area/Age</th><th>Issues</th><th>Status</th><th>Action</th></tr></thead>
               <tbody>
                 {properties.length===0 && <tr><td colSpan={8} style={{ textAlign:"center", color:"var(--earth-mid)", padding:"40px" }}>No properties submitted yet.</td></tr>}
-                {properties.map(p => (
+                {properties
+                    .filter(p => p.userName.toLowerCase().includes(propSearch.toLowerCase()))
+                    .filter(p => !statusFilter || p.status === statusFilter)
+                    .map(p => (
                   <tr key={p.id}>
                     <td>
                       {p.image
