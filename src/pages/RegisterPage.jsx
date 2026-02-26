@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BackIcon } from "src/components/Icons";
+import { BackIcon } from "../components/Icons";
 
 export default function RegisterPage({ onRegister, onBack, onGoLogin }) {
   const [name, setName] = useState("");

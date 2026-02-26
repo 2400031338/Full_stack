@@ -1,5 +1,5 @@
 import React from "react";
-import { LogOutIcon } from "src/components/Icons";
+import { LogOutIcon } from "./Icons";
 
 export default function Sidebar({ user, navItems, activeView, setView, onLogout }) {
   return (

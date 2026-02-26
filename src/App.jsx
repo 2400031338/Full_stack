@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import HomePage from "src/pages/HomePage";
-import LoginPage from "src/pages/LoginPage";
-import RegisterPage from "src/pages/RegisterPage";
-import Sidebar from "src/components/Sidebar";
-import { HomeIcon, StarIcon, BldgIcon, CheckIcon } from "src/components/Icons";
-import "src/style/main.css";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import Sidebar from "./components/Sidebar";
+import { HomeIcon, StarIcon, BldgIcon, CheckIcon } from "./components/Icons";
+import "./style/main.css";
 
 // ─── Mock Data ────────────────────────────────────────────────────────────────
 const USERS_SEED = [
