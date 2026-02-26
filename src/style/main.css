@@ -127,4 +127,31 @@ h1,h2,h3 { font-family:'Cormorant Garamond',serif; }
 .btn-orange { background:var(--saffron); color:white; box-shadow:0 3px 10px rgba(232,99,26,0.3); } .btn-orange:hover { background:var(--saffron-hover); }
 
 .error-box { background:#FEE2E2; border:1px solid #FCA5A5; color:#B91C1C; padding:12px 16px; border-radius:10px; font-size:13px; margin-bottom:20px; }
-.error-box { background:#FEE2E2; border:1px solid #FCA5A5; color:#B91C1C; padding:12px 16px; border-radius:10px; font-size:13px; margin-bottom:20px; }
+
+/* DASHBOARD LAYOUT */
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:260px; background:var(--earth); color:white; display:flex; flex-direction:column; }
+.sidebar-brand { padding:24px; text-align:center; border-bottom:1px solid rgba(255,255,255,0.1); }
+.sidebar-brand-name { font-size:24px; font-family:'Cormorant Garamond',serif; }
+.sidebar-brand-name span { color:var(--saffron-light); }
+.sidebar-brand-role { font-size:14px; color:rgba(255,255,255,0.7); margin-top:4px; }
+.sidebar-nav { flex:1; padding:16px 0; }
+.nav-item { display:flex; align-items:center; gap:12px; padding:12px 24px; cursor:pointer; transition:background 0.2s; font-size:14px; }
+.nav-item:hover { background:rgba(255,255,255,0.1); }
+.nav-item.active { background:rgba(255,255,255,0.2); font-weight:600; }
+.sidebar-footer { padding:16px 24px; border-top:1px solid rgba(255,255,255,0.1); }
+.user-info { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+.user-avatar { width:40px; height:40px; border-radius:50%; background:var(--saffron); display:flex; align-items:center; justify-content:center; font-weight:700; color:white; }
+.user-name { font-size:14px; font-weight:600; }
+.user-email { font-size:12px; color:rgba(255,255,255,0.8); }
+.logout-btn { width:100%; padding:8px 0; background:transparent; border:1px solid rgba(255,255,255,0.7); color:white; border-radius:6px; display:flex; align-items:center; justify-content:center; gap:6px; font-size:14px; cursor:pointer; transition:background 0.2s; }
+.logout-btn:hover { background:rgba(255,255,255,0.1); }
+
+.main-content { flex:1; padding:24px; background:var(--cream); overflow:auto; }
+
+/* page header and cards */
+.page-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; padding:0 8px; }
+.page-title { font-size:24px; color:var(--earth); }
+.page-subtitle { font-size:14px; color:var(--earth-mid); }
+.page-body { }
+.card { background:white; border-radius:var(--radius); box-shadow:var(--shadow); padding:24px; }
