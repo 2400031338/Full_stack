@@ -29,26 +29,22 @@ export default function HomePage({ onLogin, onRegister }) {
       </nav>
 
       {/* Hero */}
-      <div style={{ background: 'linear-gradient(140deg,#2A1A10 0%,#4A2C1C 35%,#C85515 78%,#F5A56B 100%)', padding: '88px 48px 108px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: -140, right: -140, width: 520, height: 520, borderRadius: '50%', background: 'rgba(255,255,255,0.03)' }} />
-        <div style={{ position: 'absolute', bottom: -100, left: -100, width: 400, height: 400, borderRadius: '50%', background: 'rgba(255,255,255,0.04)' }} />
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: 720, margin: '0 auto' }} className="fade-up">
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: 22, padding: '7px 20px', fontSize: 11.5, color: 'rgba(255,255,255,0.9)', fontWeight: 600, letterSpacing: 1.4, textTransform: 'uppercase', marginBottom: 32 }}>
-            🏠 India's #1 Property Enhancement Platform
-          </div>
-          <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 'clamp(40px,6vw,72px)', color: 'white', lineHeight: 1.1, marginBottom: 22 }}>
+      <div className="hero fade-up">
+        <div className="auth-tag" style={{ position:'absolute', top:32, left:48 }}>🏠 India's #1 Property Enhancement Platform</div>
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 720, margin: '0 auto' }}>
+          <h1>
             Add Real Value to<br /><span style={{ color: '#F5A56B' }}>Your Home</span>
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 18, lineHeight: 1.8, marginBottom: 52 }}>
+          <p className="subtitle">
             Expert-curated improvement ideas for Indian middle-class homes.<br />
             Get personalised recommendations and boost your property's market value.
           </p>
 
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 56, flexWrap: 'wrap', marginTop: 52 }}>
+          <div className="stats">
             {[['10,000+', 'Homeowners'], ['₹2.5Cr+', 'Value Added'], ['95%', 'Satisfaction']].map(([n, l]) => (
-              <div key={l} style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 36, color: '#F5A56B', fontWeight: 700, lineHeight: 1 }}>{n}</div>
-                <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', marginTop: 6, textTransform: 'uppercase', letterSpacing: 1.2 }}>{l}</div>
+              <div key={l} className="stat">
+                <div className="number">{n}</div>
+                <div className="label">{l}</div>
               </div>
             ))}
           </div>
@@ -65,38 +61,22 @@ export default function HomePage({ onLogin, onRegister }) {
         {/* anchor target for 'How it works' — content moved to page bottom */}
         <div id="how" />
 
-        <div style={{ maxWidth: 980, margin: '0 auto 36px', display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 12 }}>
+        <div className="feature-cards">
           {[
-            { icon: '💡', title: 'Expert-Curated', desc: 'Admin-managed improvement ideas with expected ROI and cost ranges.' },
-            { icon: '📋', title: 'Submission & Review', desc: 'Homeowners submit properties; admins review and provide feedback.' },
-            { icon: '🔖', title: 'Save & Track', desc: 'Users can save ideas, mark implemented, and track progress.' },
-            { icon: '⚙️', title: 'Admin Tools', desc: 'Admins manage recommendations, review properties, and moderate content.' },
+            { icon:'🏡', title:'Personalised Advice', desc:'Recommendations tailored to your property type & location.' },
+            { icon:'💡', title:'Expert Ideas', desc:'Curated by renovation professionals experienced in Indian homes.' },
+            { icon:'📊', title:'ROI Estimates', desc:'See potential value gain before you spend a rupee.' },
+            { icon:'🔒', title:'Secure & Private', desc:'Your data stays with you; we never share it.' },
           ].map(f => (
-            <div key={f.title} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', padding: 8 }}>
-              <div style={{ fontSize: 24, width: 44, height: 44, borderRadius: 8, background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{f.icon}</div>
-              <div>
-                <div style={{ fontWeight: 700, marginBottom: 6 }}>{f.title}</div>
-                <div style={{ color: 'var(--earth-mid)', fontSize: 13 }}>{f.desc}</div>
-              </div>
+            <div key={f.title} className="feature-card">
+              <div className="icon">{f.icon}</div>
+              <div className="title">{f.title}</div>
+              <div className="desc">{f.desc}</div>
             </div>
           ))}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24, maxWidth: 960, margin: '0 auto' }}>
-          {[
-            { icon: '🏗️', title: 'Expert Curated', desc: 'Admin-verified improvement ideas with proven ROI tailored for Indian homes and budgets.' },
-            { icon: '📈', title: 'ROI Focused', desc: "Know exactly how much you'll gain before spending a rupee on any renovation project." },
-            { icon: '🇮🇳', title: 'India-Specific', desc: 'Vastu principles, Indian climate, and middle-class budgets are at the heart of every tip.' },
-          ].map(f => (
-            <div key={f.title} style={{ background: 'white', borderRadius: 16, padding: '36px 28px', boxShadow: 'var(--shadow)', borderTop: '4px solid var(--saffron)', textAlign: 'center', transition: 'transform 0.2s,box-shadow 0.2s' }}
-              onMouseOver={e => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = 'var(--shadow-lg)'; }}
-              onMouseOut={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'var(--shadow)'; }}>
-              <div style={{ fontSize: 44, marginBottom: 18 }}>{f.icon}</div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: 'var(--earth)', marginBottom: 12 }}>{f.title}</h3>
-              <p style={{ fontSize: 14, color: 'var(--earth-mid)', lineHeight: 1.7 }}>{f.desc}</p>
-            </div>
-          ))}
-        </div>
+
 
         <div style={{ textAlign: 'center', marginTop: 60 }}>
           <p style={{ color: 'var(--earth-mid)', fontSize: 16, marginBottom: 22 }}>Ready to transform your property?</p>

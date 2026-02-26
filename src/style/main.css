@@ -18,6 +18,59 @@ h1,h2,h3 { font-family:'Cormorant Garamond',serif; }
 .fade-in { animation:fadeIn 0.35s ease both; }
 
 /* NAVBAR */
+
+/* HERO SECTION */
+.hero {
+  position: relative;
+  background: linear-gradient(140deg,#2A1A10 0%,#4A2C1C 35%,#C85515 78%,#F5A56B 100%);
+  padding: 120px 48px 160px;
+  text-align: center;
+  overflow: hidden;
+  color: white;
+}
+/* hero::before image removed; gradient and decorative shapes provide enough visual interest */
+.hero::before {
+  display: none;
+}
+.hero h1 { font-size: clamp(44px,6vw,80px); line-height:1.1; margin-bottom:22px; }
+.hero .subtitle { color: rgba(255,255,255,0.8); font-size:18px; line-height:1.8; margin-bottom:52px; }
+.hero .stats { display:flex; justify-content:center; gap:56px; flex-wrap:wrap; margin-top:52px; }
+.hero .stat { text-align:center; }
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  pointer-events: none;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  bottom: -120px;
+  left: -80px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+.hero .stat .number { font-family:'Cormorant Garamond',serif; font-size:36px; color:#F5A56B; font-weight:700; line-height:1; }
+.hero .stat .label { font-size:12px; color:rgba(255,255,255,0.55); margin-top:6px; text-transform:uppercase; letter-spacing:1.2px; }
+
+/* FEATURE CARDS */
+.feature-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:24px; margin-top:48px; }
+.feature-card { background:white; border-radius:var(--radius); box-shadow:var(--shadow); padding:24px; text-align:center; transition:transform 0.2s; }
+.feature-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); }
+.feature-card .icon { font-size:32px; margin-bottom:16px; color:var(--saffron); }
+.feature-card .title { font-weight:600; margin-bottom:8px; }
+.feature-card .desc { font-size:14px; color:var(--earth-mid); }
+
+/* rest of file follows ... */
 .navbar { background:var(--earth); height:68px; padding:0 48px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:200; box-shadow:0 2px 24px rgba(0,0,0,0.25); }
 .navbar-brand { font-family:'Cormorant Garamond',serif; font-size:28px; color:white; cursor:pointer; }
 .navbar-brand span { color:var(--saffron-light); }
