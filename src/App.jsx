@@ -3,7 +3,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Sidebar from "./components/Sidebar";
-import { HomeIcon, StarIcon, BldgIcon, CheckIcon } from "./components/Icons";
+import { HomeIcon, StarIcon, BldgIcon, CheckIcon, Ico } from "./components/Icons";
 import "./style/main.css";
 
 // ─── Mock Data ────────────────────────────────────────────────────────────────

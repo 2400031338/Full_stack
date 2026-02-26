@@ -24,7 +24,7 @@ export default function RegisterPage({ onRegister, onBack, onGoLogin }) {
         <div className="navbar-brand">Home<span>Worth</span></div>
         <div className="navbar-actions">
           <button className="nav-btn nav-btn-ghost" onClick={onBack}>← Home</button>
-          <button classity="nav-btn nav-btn-ghost" onClick={onGoLogin}>Login</button>
+          <button className="nav-btn nav-btn-ghost" onClick={onGoLogin}>Login</button>
         </div>
       </nav>
 
